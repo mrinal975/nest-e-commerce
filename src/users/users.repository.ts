@@ -12,7 +12,7 @@ export class UsersRepository {
   async findAll() {
     return await this.usersRepo.find();
   }
-  async findOne(id: number): Promise<User> {
+  async findOne(id: any): Promise<User> {
     return await this.usersRepo.findOneBy({ id });
   }
   async create(user: User): Promise<User> {
