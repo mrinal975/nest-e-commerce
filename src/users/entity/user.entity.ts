@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -16,7 +16,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @CreateDateColumn({ type: 'timestamp' })
