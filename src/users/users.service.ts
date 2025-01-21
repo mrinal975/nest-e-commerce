@@ -15,7 +15,7 @@ export class UsersService {
   }
 
   getUserByEmail(email: string): Promise<User> {
-    return this.userRepository.findOne({ where: { email } });
+    return this.userRepository.findOne({ email });
   }
   createUser(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
