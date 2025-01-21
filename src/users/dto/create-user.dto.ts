@@ -1,4 +1,5 @@
 import { IsEmail, IsString, MinLength } from 'class-validator';
+import { Unique } from 'typeorm';
 
 export class CreateUserDto {
   @IsString()
@@ -6,6 +7,7 @@ export class CreateUserDto {
   name: string;
 
   @IsEmail()
+  @Unique(['email'])
   email: string;
 
   @IsString()
