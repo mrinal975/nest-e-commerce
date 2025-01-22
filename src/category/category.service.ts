@@ -11,7 +11,10 @@ export class CategoryService {
     return await this.categoryRepository.getAll();
   }
 
-  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+  async create(
+    createCategoryDto: CreateCategoryDto,
+    user: any,
+  ): Promise<Category> {
     return await this.categoryRepository.create(createCategoryDto);
   }
 

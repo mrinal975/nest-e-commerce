@@ -1,9 +1,17 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Request,
+} from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Category } from './entity/category.entity';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-@Controller('category')
+@Controller('categories')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
@@ -18,8 +26,11 @@ export class CategoryController {
   @Post()
   async create(
     @Body() createCategoryDto: CreateCategoryDto,
+    @Request() req,
   ): Promise<Category> {
-    return await this.categoryService.create(createCategoryDto);
+    const user = req.user;
+    console.log(user);
+    return await this.categoryService.create(createCategoryDto, user);
   }
   @Put(':id')
   async update(
