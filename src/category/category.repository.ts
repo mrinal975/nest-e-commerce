@@ -9,6 +9,11 @@ export class CategoryRepository {
   async getAll(): Promise<Category[]> {
     return await this.catRepository.find();
   }
+  /**
+   * Create a new category with the given details.
+   * @param category the details of the category to create
+   * @returns the created category
+   */
   async create(category: Partial<Category>): Promise<Category> {
     return await this.catRepository.save(category);
   }
