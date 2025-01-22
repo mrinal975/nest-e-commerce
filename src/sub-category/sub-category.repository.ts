@@ -1,8 +1,12 @@
 import { Repository } from 'typeorm';
 import { SubCategory } from './entity/sub-category.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 export class SubCategoryRepository {
-  constructor(private readonly subCategoryRepo: Repository<SubCategory>) {}
+  constructor(
+    @InjectRepository(SubCategory)
+    private readonly subCategoryRepo: Repository<any>,
+  ) {}
   async findAll(): Promise<SubCategory[]> {
     return await this.subCategoryRepo.find();
   }
