@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { SubCategory } from 'src/sub-category/entity/sub-category.entity';
+import { Category } from 'src/category/entity/category.entity';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -24,4 +27,10 @@ export class User {
 
   @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
+
+  @OneToMany(() => SubCategory, (subCategory) => subCategory.created_by)
+  subCategories: SubCategory[];
+
+  @OneToMany(() => Category, (category) => category.created_by)
+  categories: Category[];
 }
