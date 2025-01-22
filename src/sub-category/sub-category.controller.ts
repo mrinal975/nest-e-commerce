@@ -6,6 +6,8 @@ import {
   Param,
   Post,
   Put,
+  Req,
+  Request,
 } from '@nestjs/common';
 import { SubCategoryService } from './sub-category.service';
 import { createSubCategoryDto } from './dto/create-sub-category.dto';
@@ -20,8 +22,10 @@ export class SubCategoryController {
     return this.subCategoryService.getAll();
   }
   @Post()
-  create(@Body() createSubCategoryDto: createSubCategoryDto) {
-    return this.subCategoryService.create(createSubCategoryDto);
+  create(@Body() createSubCategoryDto: createSubCategoryDto, @Request req) {
+      const user = req.user; // Extract the authenticated user
+
+    return this.subCategoryService.create(createSubCategoryDto, user);
   }
   @Get(':id')
   getOne(@Param('id') id: number): Promise<SubCategory> {

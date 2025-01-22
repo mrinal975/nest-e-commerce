@@ -15,7 +15,7 @@ import { User } from 'src/users/entity/user.entity';
     UsersModule,
     JwtModule.register({
       secret: 'nest-e-commerce',
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '1d' },
     }),
   ],
   providers: [AuthService, JwtStrategy, UsersService, UsersRepository],

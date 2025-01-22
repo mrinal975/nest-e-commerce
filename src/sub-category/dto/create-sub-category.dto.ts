@@ -1,11 +1,11 @@
-import { IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class createSubCategoryDto {
   @IsString()
   name: string;
 
-  @IsString()
-  category_id: string;
+  @IsNumber()
+  category_id: number;
 
   @IsString()
   description: string;
