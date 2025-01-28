@@ -7,7 +7,8 @@ import { UpdateSubCategoryDto } from './dto/update-sub-category.dto';
 import { User } from 'src/users/entity/user.entity';
 @Injectable()
 export class SubCategoryService {
-  constructor(private readonly subCategoryRepo: SubCategoryRepository,
+  constructor(
+    private readonly subCategoryRepo: SubCategoryRepository,
     private readonly categoryRepository: CategoryRepository,
   ) {}
 

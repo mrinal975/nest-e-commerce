@@ -6,7 +6,6 @@ import {
   Param,
   Post,
   Put,
-  Req,
   Request,
 } from '@nestjs/common';
 import { SubCategoryService } from './sub-category.service';
@@ -22,8 +21,8 @@ export class SubCategoryController {
     return this.subCategoryService.getAll();
   }
   @Post()
-  create(@Body() createSubCategoryDto: createSubCategoryDto, @Request req) {
-      const user = req.user; // Extract the authenticated user
+  create(@Body() createSubCategoryDto: createSubCategoryDto, @Request() req) {
+    const user = req.user; // Extract the authenticated user
 
     return this.subCategoryService.create(createSubCategoryDto, user);
   }
