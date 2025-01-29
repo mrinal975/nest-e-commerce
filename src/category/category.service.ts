@@ -3,6 +3,7 @@ import { CategoryRepository } from './category.repository';
 import { Category } from './entity/category.entity';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { SlugifyPipe } from 'src/common/pipes/slugify.pipe';
 @Injectable()
 export class CategoryService {
   constructor(private categoryRepository: CategoryRepository) {}
@@ -15,7 +16,14 @@ export class CategoryService {
     createCategoryDto: CreateCategoryDto,
     user: any,
   ): Promise<Category> {
-    return await this.categoryRepository.create(createCategoryDto);
+    const { name, description } = createCategoryDto;
+    const slug = new SlugifyPipe().transform(name);
+    return await this.categoryRepository.create({
+      name,
+      description,
+      slug,
+      created_by: user.id,
+    });
   }
 
   async getOne(id: number): Promise<Category> {

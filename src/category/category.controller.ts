@@ -25,10 +25,7 @@ export class CategoryController {
     return await this.categoryService.getOne(id);
   }
   @Post()
-  async create(
-    @Body() createCategoryDto: CreateCategoryDto,
-    @Request() req,
-  ): Promise<Category> {
+  async create(@Body() createCategoryDto: CreateCategoryDto, @Request() req) {
     const user = req.user;
     console.log(user);
     return await this.categoryService.create(createCategoryDto, user);
