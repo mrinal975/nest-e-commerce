@@ -5,6 +5,7 @@ import { CategoryRepository } from 'src/category/category.repository';
 import { createSubCategoryDto } from './dto/create-sub-category.dto';
 import { UpdateSubCategoryDto } from './dto/update-sub-category.dto';
 import { User } from 'src/users/entity/user.entity';
+import { SlugifyPipe } from 'src/common/pipes/slugify.pipe';
 @Injectable()
 export class SubCategoryService {
   constructor(
@@ -29,14 +30,14 @@ export class SubCategoryService {
     if (!category) {
       throw new NotFoundException(`Category with ID ${category_id} not found`);
     }
-
-    const subCategory = new SubCategory();
-    subCategory.name = name;
-    subCategory.description = description;
-    subCategory.category = category;
-    subCategory.created_by = user;
-
-    return await this.subCategoryRepo.create(subCategory);
+    const slug = new SlugifyPipe().transform(name);
+    return await this.subCategoryRepo.create({
+      name,
+      slug,
+      description,
+      category,
+      created_by: user,
+    });
   }
 
   async update(
