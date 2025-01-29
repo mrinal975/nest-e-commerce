@@ -20,6 +20,9 @@ export class Category {
   @Column({ length: 255 })
   description: string;
 
+  @Column({ nullable: true, length: 255 })
+  slug: string;
+
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 

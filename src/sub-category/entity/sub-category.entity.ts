@@ -16,6 +16,9 @@ export class SubCategory {
   @Column()
   name: string;
 
+  @Column({ length: 250, nullable: true })
+  slug: string;
+
   @Column({ length: 255 })
   description: string;
 

@@ -16,6 +16,7 @@ import { AuthMiddleware } from 'src/auth/auth.middleware';
   ],
   controllers: [CategoryController],
   providers: [CategoryService, CategoryRepository],
+  exports: [CategoryRepository],
 })
 export class CategoryModule {
   configure(consumer: MiddlewareConsumer) {

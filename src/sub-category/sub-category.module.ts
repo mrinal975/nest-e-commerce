@@ -5,6 +5,7 @@ import { SubCategoryRepository } from './sub-category.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SubCategory } from './entity/sub-category.entity';
 import { JwtModule } from '@nestjs/jwt';
+import { CategoryModule } from 'src/category/category.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { JwtModule } from '@nestjs/jwt';
       secret: 'nest-e-commerce',
       signOptions: { expiresIn: '1d' },
     }),
+    CategoryModule,
   ],
   controllers: [SubCategoryController],
   providers: [SubCategoryService, SubCategoryRepository],

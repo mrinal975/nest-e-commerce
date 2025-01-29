@@ -1,7 +1,9 @@
 import { Repository } from 'typeorm';
 import { Category } from './entity/category.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class CategoryRepository {
   constructor(
     @InjectRepository(Category) private readonly catRepository: Repository<any>,
