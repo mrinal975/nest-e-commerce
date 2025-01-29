@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Request,
@@ -27,19 +28,19 @@ export class SubCategoryController {
     return this.subCategoryService.create(createSubCategoryDto, user);
   }
   @Get(':id')
-  getOne(@Param('id') id: number): Promise<SubCategory> {
+  getOne(@Param('id', ParseIntPipe) id: number): Promise<SubCategory> {
     return this.subCategoryService.getOne(id);
   }
 
   @Put(':id')
   update(
-    @Param(':id') id: number,
+    @Param(':id', ParseIntPipe) id: number,
     @Body() updateSubCategoryDto: createSubCategoryDto,
   ): Promise<SubCategory> {
     return this.subCategoryService.update(id, updateSubCategoryDto);
   }
   @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.subCategoryService.delete(id);
   }
 }

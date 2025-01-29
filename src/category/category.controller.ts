@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Request,
@@ -20,7 +21,7 @@ export class CategoryController {
     return await this.categoryService.getAll();
   }
   @Get(':id')
-  async getOne(@Param('id') id: number): Promise<Category> {
+  async getOne(@Param('id', ParseIntPipe) id: number): Promise<Category> {
     return await this.categoryService.getOne(id);
   }
   @Post()
@@ -34,12 +35,12 @@ export class CategoryController {
   }
   @Put(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
     return await this.categoryService.update(id, updateCategoryDto);
   }
-  async delete(@Param('id') id: number): Promise<void> {
+  async delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return await this.categoryService.delete(id);
   }
 }
