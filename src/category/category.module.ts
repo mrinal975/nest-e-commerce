@@ -5,7 +5,7 @@ import { CategoryRepository } from './category.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Category } from './entity/category.entity';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthMiddleware } from 'src/auth/auth.middleware';
+import { AuthMiddleware } from 'src/common/middleware/auth.middleware';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Category]),

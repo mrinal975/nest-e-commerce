@@ -22,6 +22,7 @@ export class AuthMiddleware implements NestMiddleware {
       req.user = payload;
       next();
     } catch (error) {
+      console.log('error', error);
       throw new UnauthorizedException('Invalid or expired token');
     }
   }
