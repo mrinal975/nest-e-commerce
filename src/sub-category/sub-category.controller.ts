@@ -7,11 +7,12 @@ import {
   ParseIntPipe,
   Post,
   Put,
-  Request,
 } from '@nestjs/common';
 import { SubCategoryService } from './sub-category.service';
 import { createSubCategoryDto } from './dto/create-sub-category.dto';
 import { SubCategory } from './entity/sub-category.entity';
+import { currentUser } from 'src/common/decorators/current-user.decorator';
+import { User } from 'src/users/entity/user.entity';
 
 @Controller('sub-category')
 export class SubCategoryController {
@@ -22,9 +23,10 @@ export class SubCategoryController {
     return this.subCategoryService.getAll();
   }
   @Post()
-  create(@Body() createSubCategoryDto: createSubCategoryDto, @Request() req) {
-    const user = req.user; // Extract the authenticated user
-
+  create(
+    @Body() createSubCategoryDto: createSubCategoryDto,
+    @currentUser() user: User,
+  ) {
     return this.subCategoryService.create(createSubCategoryDto, user);
   }
   @Get(':id')
